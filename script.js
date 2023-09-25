@@ -248,7 +248,7 @@ async function searchResults(searchvalue){
         document.cookie = `videoId = ${videoId} ; path = ${"./videos.html"}`
 
         let linkItem = document.createElement("a");
-        linkItem.href = "http://127.0.0.1:5500/videos.html"
+        linkItem.href = "/videos.html"
         linkItem.target = "_blank"
         linkItem.click();
 
