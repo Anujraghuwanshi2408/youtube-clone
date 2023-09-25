@@ -248,7 +248,7 @@ async function searchResults(searchvalue){
         document.cookie = `videoId = ${videoId} ; path = ${"./videos.html"}`
 
         let linkItem = document.createElement("a");
-        linkItem.href = "/videos.html"
+        linkItem.href = "/youtube-clone/videos.html"
         linkItem.target = "_blank"
         linkItem.click();
 
