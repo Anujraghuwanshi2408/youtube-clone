@@ -72,7 +72,7 @@ window.addEventListener("DOMContentLoaded" , async function(){
         let item = data.items[0]
         // console.log(item)
         channelIdOftheRederedVideo = item.snippet.channelId
-        fetchSuggestion(channelIdOftheRederedVideo)
+           await fetchSuggestion(channelIdOftheRederedVideo)
      
         let subscribers = await  getSubscriber(item.snippet.channelId)
        
