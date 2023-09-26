@@ -18,7 +18,7 @@ window.addEventListener("DOMContentLoaded" , async function(){
 
     let apiKey = localStorage.getItem("apiKey");
     let videoId;
-    console.log(apiKey)
+    // console.log(apiKey)
 
     let cookie = document.cookie.split(";");
     
@@ -31,14 +31,14 @@ window.addEventListener("DOMContentLoaded" , async function(){
         
     }) 
 
-    console.log(videoId)
+    // console.log(videoId)
 
     
     let firstScript = document.getElementsByTagName("script")[0] ;
 
     firstScript.addEventListener("load", onLoadScript)
     
-    console.log(firstScript)
+    // console.log(firstScript)
 
     function onLoadScript() {
         if (YT){
@@ -67,7 +67,7 @@ window.addEventListener("DOMContentLoaded" , async function(){
          
         let response = await fetch(endpoint);
         let data = await response.json()
-        console.log(data)
+        // console.log(data)
 
         let item = data.items[0]
         // console.log(item)
@@ -204,7 +204,7 @@ window.addEventListener("DOMContentLoaded" , async function(){
                                 </div>
                                 <span class="reply">Reply</span>
                               </div>
-                              <div class="btn" onclick="loadReplies(this ,${id})">
+                              <div class="btn" onclick="loadReplies(this )" data-id = ${id}>
                                 <i class="fa fa-solid fa-angle-down"></i>
                                 <span> ${replyCount} replies</span>
                               </div>
@@ -214,6 +214,7 @@ window.addEventListener("DOMContentLoaded" , async function(){
 
                             `
         commentSection.appendChild(comment)
+          console.log(id)
          }
         
 
@@ -226,11 +227,13 @@ window.addEventListener("DOMContentLoaded" , async function(){
         }
       }
 
-    async function loadReplies(element , divId){
-         
-       console.log(element)
-     let  commentId = divId.id
-     console.log(commentId)
+    async function loadReplies(element ){
+         console.log("first")
+         let commentId = (element.getAttribute("data-id"))
+         console.log(commentId)
+      //  console.log(divId)
+      // let  commentId = divId.id   
+      // console.log(commentId)
 
 
      let endpoint = `https://www.googleapis.com/youtube/v3/comments?part=snippet&parentId=${commentId}&key=${apiKey}`;
@@ -243,7 +246,7 @@ window.addEventListener("DOMContentLoaded" , async function(){
            let repliesContainer = document.getElementById(commentId);
            repliesContainer.innerHTML = ""
           
-           console.log(items)
+          //  console.log(items)
 
            for(let i=0; i<items.length; i++){
             let item = items[i];
@@ -310,17 +313,17 @@ window.addEventListener("DOMContentLoaded" , async function(){
 
           let endpoint = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&type=video&maxResults=50&key=${apiKey}`
          
-          console.log("second")
+          // console.log("second")
           try{
             let response = await fetch(endpoint)
             let data = await  response.json()
-            console.log(data)
+            // console.log(data)
             let items = data.items
-            console.log(items)
+            // console.log(items)
 
 
             let rightSection = document.getElementById("right-section-comment")
-              console.log(rightSection)
+              // console.log(rightSection)
 
             for(let i=0; i<items.length; i++){
               let item = items[i];
@@ -354,7 +357,7 @@ window.addEventListener("DOMContentLoaded" , async function(){
              rightSection.append(videoSuggestion) 
 
             }
-            console.log(items)
+            // console.log(items)
           }
           catch(error){
             console.log("the error is in the fetchSuggestion -->" , error)
@@ -363,7 +366,7 @@ window.addEventListener("DOMContentLoaded" , async function(){
 
 
         async function fetchStatistic(videoId){
-          console.log("first")
+          // console.log("first")
 
           if(!videoId)  return;
 
@@ -382,9 +385,9 @@ window.addEventListener("DOMContentLoaded" , async function(){
 
         function formatPublishTime(inputDateTime){
           let date=new Date().getTime();
-          console.log(date);
+          // console.log(date);
           let target=new Date(inputDateTime).getTime();
-          console.log(target);
+          // console.log(target);
           let timeDiff=Math.abs(date-target);
           // console.log(timeDiff)
           let daysDiff=Math.ceil(timeDiff/(1000*3600*24));
